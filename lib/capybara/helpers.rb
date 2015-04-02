@@ -62,6 +62,7 @@ module Capybara
     # @option [Integer] minimum  Count must be larger than or equal to this value
     #
     def matches_count?(count, options={})
+      options[:minimum] ||= Capybara.default_minimum_matches
       return (Integer(options[:count]) == count)     if options[:count]
       return false if options[:maximum] && (Integer(options[:maximum]) < count)
       return false if options[:minimum] && (Integer(options[:minimum]) > count)
