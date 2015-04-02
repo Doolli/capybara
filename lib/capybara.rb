@@ -25,6 +25,7 @@ module Capybara
     attr_accessor :save_and_open_page_path, :automatic_reload, :raise_server_errors, :server_errors
     attr_writer :default_driver, :current_driver, :javascript_driver, :session_name, :server_host
     attr_accessor :app
+    attr_accessor :default_minimum_matches
 
     ##
     #
@@ -44,6 +45,7 @@ module Capybara
     # [raise_server_errors = Boolean]     Should errors raised in the server be raised in the tests? (Default: true)  
     # [server_errors = Array\<Class\>]    Error classes that should be raised in the tests if they are raised in the server and Capybara.raise_server_errors is true (Default: [StandardError])  
     # [default_selector = :css/:xpath]    Methods which take a selector use the given type by default (Default: :css)  
+    # [default_minimum_matches = Integer] The minimum number of matches to find by default (Default: 0)  
     # [default_wait_time = Integer]       The maximumnumber of seconds to wait for asynchronous processes to finish (Default: 2)  
     # [ignore_hidden_elements = Boolean]  Whether to ignore hidden elements on the page (Default: true)  
     # [automatic_reload = Boolean]        Whether to automatically reload elements as Capybara is waiting (Default: true)  
@@ -360,6 +362,7 @@ Capybara.configure do |config|
   config.run_server = true
   config.server {|app, port| Capybara.run_default_server(app, port)}
   config.default_selector = :css
+  config.default_minimum_matches = 0
   config.default_wait_time = 2
   config.ignore_hidden_elements = true
   config.default_host = "http://www.example.com"
