@@ -13,6 +13,18 @@ RSpec.describe Capybara do
     end
   end
 
+  describe 'default_minimum_matches' do
+    after do
+      Capybara.default_minimum_matches = @previous_minimum_matches
+    end
+
+    it "should be changeable" do
+      @previous_minimum_matches = Capybara.default_minimum_matches
+      Capybara.default_minimum_matches = 5
+      expect(Capybara.default_minimum_matches).to eq(5)
+    end
+  end
+
   describe '.register_driver' do
     it "should add a new driver" do
       Capybara.register_driver :schmoo do |app|
